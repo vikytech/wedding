@@ -17,6 +17,7 @@ $(document).ready(function () {
     }
     return array;
   }
+  const STORAGE_KEY = "wishes";
 
   //numbers arr for fake random
   var arr = [
@@ -46,7 +47,8 @@ $(document).ready(function () {
   }
 
   //wish_data is a array of wish content
-  var wish_data = {};
+  var wish_data = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(wish_data));
   // n is for the fake random position
   var n = 0;
   var WishNo = 0;
@@ -55,17 +57,17 @@ $(document).ready(function () {
   var TimeText;
 
   //add the data from sharepoint
-  from_sharepoint();
+  from_localstorage();
 
   //creat a leaf when click make a wish button
   $("#make_wish").click(function () {
     //check if has content, make sure no empty
     if ($("#wish_content").val() && $("#wisher_name").val()) {
       WishText = $("#wish_content").val();
-      console.log(WishText);
       NameText = $("#wisher_name").val();
-      TimeText = new Date().toLocaleDateString("en-US");
+      TimeText = new Date().toLocaleDateString("en-IN");
       prepare_data();
+      saveWishes();
       CreatALeaf(wish_data);
 
       // after creat the leaf, reset the textarea for next wish
@@ -83,16 +85,20 @@ $(document).ready(function () {
     }
   });
 
-  //get data from sharepoint
-  function from_sharepoint() {
-    for (let i = 0; i < 20; i++) {
-      WishText = "wishwishwish";
-      console.log(WishText);
-      NameText = "namenamename";
-      TimeText = "datedatedate";
+  function saveWishes() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(wish_data));
+  }
+
+  function from_localstorage() {
+    let localWishes = JSON.parse(localStorage.getItem(STORAGE_KEY));
+
+    $.each(localWishes, function (message) {
+      WishText = message.wish;
+      NameText = message.name;
+      TimeText = message.time;
       prepare_data();
-      CreatALeaf(wish_data);
-    }
+    });
+    CreatALeaf(wish_data);
   }
 
   //import data
@@ -111,13 +117,7 @@ $(document).ready(function () {
       71, 220, 218, 91, 126, 289, 220, 156, 251,
     ];
 
-    //        console.log("n=" + n)
-    //        console.log("arr.n=" + arr[n])
-    //        console.log(FakeRandomTop[arr[n]])
-    //        console.log(FakeRandomLeft[arr[n]])
-    //        console.log(FakeRandomRotate[arr[n]])
-
-    wish_data = {
+    wish_data.push({
       wish: WishText,
       name: NameText,
       time: TimeText,
@@ -126,7 +126,7 @@ $(document).ready(function () {
       top: FakeRandomTop[arr[n]],
       left: FakeRandomLeft[arr[n]],
       rotate: FakeRandomRotate[arr[n]],
-    };
+    });
 
     WishNo += 1;
     //use the number in arr to fake the random without duplication, so a position only has one leaf, in a loop
@@ -142,29 +142,33 @@ $(document).ready(function () {
 
   //creat a new leaf fucntion
   function CreatALeaf(data) {
-    var txt1 =
-      "<div data-rotate=" +
-      data.rotate +
-      " data-orig=" +
-      data.rotate +
-      ' id="wish_' +
-      data.wish_num +
-      '" class="leaf_group leaf_' +
-      data.num +
-      '" style="top:' +
-      data.top +
-      "%; left:" +
-      data.left +
-      "%; transform:rotate(" +
-      data.rotate +
-      'deg)"><p class="text_on_leaf wish_on_leaf">' +
-      data.wish +
-      '</p><p class="text_on_leaf name_on_leaf">' +
-      data.name +
-      '</p><p class="text_on_leaf time_tag">' +
-      data.time +
-      "</p></div>";
-    $(".leaf_test").append(txt1);
+    $(".leaf_test")[0].innerHTML ="";
+    $.each(data, function(_, message) {
+      if(message.wish)
+      var txt1 =
+        "<div data-rotate=" +
+        message.rotate +
+        " message-orig=" +
+        message.rotate +
+        ' id="wish_' +
+        message.wish_num +
+        '" class="leaf_group leaf_' +
+        message.num +
+        '" style="top:' +
+        message.top +
+        "%; left:" +
+        message.left +
+        "%; transform:rotate(" +
+        message.rotate +
+        'deg)"><p class="text_on_leaf wish_on_leaf">' +
+        message.wish +
+        '</p><p class="text_on_leaf name_on_leaf">' +
+        message.name +
+        '</p><p class="text_on_leaf time_tag">' +
+        message.time +
+        "</p></div>";
+      $(".leaf_test").append(txt1);
+    });
   }
 
   //character remain in the text area

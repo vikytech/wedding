@@ -28,32 +28,38 @@
         font-size: 16px;
         cursor: pointer;
       }
-      #shapeImage {
+      #shapeImage, .hidden {
         display: none;
       }
     </style>
   </head>
   <body>
-    <h1>Leave Your Wish ✨</h1>
+    <h1>Thank you for your Wishes ❤️✨</h1>
 
-    <input type="text" id="wishInput" placeholder="Type your wish here..." />
-    <button id="submitWish">Submit Wish</button>
+    <input class="hidden" type="text" id="wishInput" placeholder="Type your wish here..." />
+    <button class="hidden" id="submitWish">Submit Wish</button>
 
     <div id="wordcloud"></div>
 
     <!-- Hidden image used for shape -->
     <img id="shapeImage" src="yinyang.png" crossorigin="anonymous" />
 
-    <!-- Load wordcloud2.js -->
-    <script src="wordcloud2.min.js"></script>
+    <script src="../vendor/jquery-2.2.4.min.js"></script>
+    
+    <script src="../vendor/wordcloud2.min.js"></script>
 
     <script>
       const STORAGE_KEY = "wishes";
 
-      // Load wishes from localStorage or default
-      let wishes = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [
-        ["V2 Wedding!", 50],
-      ];
+      let wishes = [];
+      $.each(
+        JSON.parse(localStorage.getItem(STORAGE_KEY)),
+        function (_, message) {
+          if (message.wish) {
+            wishes.push([message.wish, Math.floor(Math.random() * 40) + 20]);
+          }
+        }
+      );
 
       function saveWishes() {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(wishes));
