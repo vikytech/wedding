@@ -1,0 +1,129 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+    <meta
+      name="description"
+      content="Vikhyath & Vibha Wedding - A Celebration of Love"
+    />
+    <meta
+      name="keywords"
+      content="Wedding, Vikhyath, Vibha, Celebration, Love"
+    />
+    <meta name="author" content="Vikhyath & Vibha" />
+    <title>#V2 Wish Tree</title>
+    <script src="https://releases.jquery.com/git/jquery-git.min.js"></script>
+    <link rel="stylesheet" href="./wish-tree.css" />
+    <!-- <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;500&display=swap"
+      rel="stylesheet"
+    /> -->
+  </head>
+
+  <body>
+    <div class="for_position">
+      <div
+        class="container-fluid"
+        style="vertical-align: middle; display: table-cell"
+      >
+        <!--empty div for position arrangement-->
+        <div class="col-lg-2"></div>
+        <!--the tree frame-->
+        <div class="col-xs-12 col-sm-8 col-md-7 col-lg-5 tree">
+          <img src="http://image.ibb.co/mwmBua/tree.png" class="tree_img" />
+
+          <div class="leaf_test">
+            <!--example of leaf templete--
+  
+                  <div id="wish_0" class="leaf_group leaf_1" >
+                      <p class="text_on_leaf wish_on_leaf">  </p>
+                      <p class="text_on_leaf name_on_leaf"></p>
+                      <p class="text_on_leaf time_tag"></p>
+                  </div>
+  
+                  end of one leaf templete-->
+          </div>
+          <!--end of leaf group frame-->
+
+          <!--modal pack-->
+          <!-- Modal -->
+          <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog modal-sm">
+              <!-- Modal content-->
+              <div class="modal-content">
+                <img src="http://image.ibb.co/gpRY7v/wish_background.jpg" />
+
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">
+                    &times;
+                  </button>
+                  <h4 class="modal-title"></h4>
+                </div>
+
+                <div class="modal-body">
+                  <p id="modal_content"></p>
+                  <p id="modal_name"></p>
+                  <p id="modal_time"></p>
+                </div>
+
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-default"
+                    data-dismiss="modal"
+                    style="position: relative; background: none"
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="user_input col-xs-12 col-sm-4 col-md-5 col-lg-4"
+          style="max-width: 500px"
+        >
+          What's your wish:
+          <br />
+          <textarea
+            id="wish_content"
+            type="text"
+            name="wish_content"
+            maxlength="200"
+            rows="7"
+            placeholder="Type your wish here"
+            autofocus
+          ></textarea>
+          <p class="counter">200 / 200</p>
+          <br />
+          <br />
+          Your name:
+          <br />
+          <textarea
+            id="wisher_name"
+            type="text"
+            name="wisher_name"
+            maxlength="20"
+            placeholder="Enter your name"
+          ></textarea>
+          <br />
+          <br />
+          <button class="btn btn-default" id="make_wish" type="button">
+            Make a wish
+          </button>
+        </div>
+
+        <!--empty div for position arrangement-->
+        <div class="col-lg-1"></div>
+      </div>
+    </div>
+
+    <div class="grass">
+      <img
+        src="http://image.ibb.co/cjgBua/front_grass.png"
+        style="width: 100%"
+      />
+    </div>
+  </body>
+</html>
