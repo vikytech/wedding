@@ -77,7 +77,7 @@ $(document).ready(function () {
 
       //make a magic sound
       new Audio(
-        "https://d1490khl9dq1ow.cloudfront.net/sfx/mp3preview/magic-spells-with-harp-and-chimes_GJiMErE_.mp3"
+        "../audio/wish-audio.mp3"
       ).play();
     } else {
       // if empty, alert the user
