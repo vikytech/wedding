@@ -1,21 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Vikhyath & Vibha Wedding - A Celebration of Love"
-    />
-    <meta
-      name="keywords"
-      content="Wedding, Vikhyath, Vibha, Celebration, Love"
-    />
-    <meta name="author" content="Vikhyath & Vibha" />
-    <title>#V2 Wedding</title>
-    <link rel="stylesheet" href="styles.css" />
-    <script src="https://releases.jquery.com/git/jquery-git.min.js"></script>
-    <link
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vikhyath & Vibha Wedding Invitation</title>
+  <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;500&display=swap"
       rel="stylesheet"
     />
@@ -24,229 +13,142 @@
       rel="stylesheet"
       type="text/css"
     />
-  </head>
-  <body>
-    <!-- Header Section -->
-    <header id="home">
-      <div class="header-container">
-        <h1 class="wedding-title">
-          <span class="logo-svg hide">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="200"
-              height="200"
-              viewBox="0 0 500 500"
-            >
-              <!-- Beige Circle Background -->
-              <circle cx="250" cy="250" r="240" fill="#f5f0e6" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+  <div class="container">
 
-              <!-- Define elegant flower -->
-              <defs>
-                <g id="flower">
-                  <!-- Center -->
-                  <circle cx="0" cy="0" r="5" fill="pink" />
-                  <!-- Petals -->
-                  <ellipse
-                    rx="6"
-                    ry="12"
-                    fill="white"
-                    transform="rotate(0) translate(0,12)"
-                  />
-                  <ellipse
-                    rx="6"
-                    ry="12"
-                    fill="white"
-                    transform="rotate(60) translate(0,12)"
-                  />
-                  <ellipse
-                    rx="6"
-                    ry="12"
-                    fill="white"
-                    transform="rotate(120) translate(0,12)"
-                  />
-                  <ellipse
-                    rx="6"
-                    ry="12"
-                    fill="white"
-                    transform="rotate(180) translate(0,12)"
-                  />
-                  <ellipse
-                    rx="6"
-                    ry="12"
-                    fill="white"
-                    transform="rotate(240) translate(0,12)"
-                  />
-                  <ellipse
-                    rx="6"
-                    ry="12"
-                    fill="white"
-                    transform="rotate(300) translate(0,12)"
-                  />
-                </g>
-              </defs>
-
-              <!-- Arrange 24 flowers in a full circle -->
-              <g transform="translate(250, 250)">
-                <!-- Loop every 15° for a full circle -->
-                <g transform="rotate(0) translate(0, -200)">
-                  <use href="#flower" />
-                </g>
-                <g transform="rotate(15) translate(0, -200)">
-                  <use href="#flower" />
-                </g>
-                <g transform="rotate(30) translate(0, -200)">
-                  <use href="#flower" />
-                </g>
-                <g transform="rotate(45) translate(0, -200)">
-                  <use href="#flower" />
-                </g>
-                <g transform="rotate(60) translate(0, -200)">
-                  <use href="#flower" />
-                </g>
-                <g transform="rotate(75) translate(0, -200)">
-                  <use href="#flower" />
-                </g>
-                <g transform="rotate(90) translate(0, -200)">
-                  <use href="#flower" />
-                </g>
-                <g transform="rotate(105) translate(0, -200)">
-                  <use href="#flower" />
-                </g>
-                <g transform="rotate(120) translate(0, -200)">
-                  <use href="#flower" />
-                </g>
-                <g transform="rotate(135) translate(0, -200)">
-                  <use href="#flower" />
-                </g>
-                <g transform="rotate(150) translate(0, -200)">
-                  <use href="#flower" />
-                </g>
-                <g transform="rotate(165) translate(0, -200)">
-                  <use href="#flower" />
-                </g>
-                <g transform="rotate(180) translate(0, -200)">
-                  <use href="#flower" />
-                </g>
-                <g transform="rotate(195) translate(0, -200)">
-                  <use href="#flower" />
-                </g>
-                <g transform="rotate(210) translate(0, -200)">
-                  <use href="#flower" />
-                </g>
-                <g transform="rotate(225) translate(0, -200)">
-                  <use href="#flower" />
-                </g>
-                <g transform="rotate(240) translate(0, -200)">
-                  <use href="#flower" />
-                </g>
-                <g transform="rotate(255) translate(0, -200)">
-                  <use href="#flower" />
-                </g>
-                <g transform="rotate(270) translate(0, -200)">
-                  <use href="#flower" />
-                </g>
-                <g transform="rotate(285) translate(0, -200)">
-                  <use href="#flower" />
-                </g>
-                <g transform="rotate(300) translate(0, -200)">
-                  <use href="#flower" />
-                </g>
-                <g transform="rotate(315) translate(0, -200)">
-                  <use href="#flower" />
-                </g>
-                <g transform="rotate(330) translate(0, -200)">
-                  <use href="#flower" />
-                </g>
-                <g transform="rotate(345) translate(0, -200)">
-                  <use href="#flower" />
-                </g>
-              </g>
-
-              <!-- Center Logo -->
-              <text
-                x="50%"
-                y="50%"
-                font-family="Georgia, serif"
-                font-size="64"
-                fill="#d95f8c"
-                text-anchor="middle"
-                alignment-baseline="middle"
-              >
-                #V
-                <tspan dy="-24" font-size="32">2</tspan>
-              </text>
-            </svg>
-          </span>
-          The V2 Wedding
-        </h1>
-        <h2 class="names">
-          <span class="first-name">Vikhyath</span>
-          <!-- <span class="logo"></span> -->
-          <span class="first-name">Vibha</span>
-        </h2>
-        <p class="wedding-date">December 5th, 2025</p>
-      </div>
+    <!-- Header with Logo and Names -->
+    <header>
+      <img src="assets/img/logo.png" alt="Wedding Logo" class="logo" />
+      <h1>Vikhyath & Vibha</h1>
+      <p class="tagline">Together with their families, invite you to celebrate their wedding</p>
     </header>
 
-    <!-- Navigation for Smooth Scroll -->
-    <nav>
-      <ul>
-        <li><a href="#about">About Us</a></li>
-        <li><a href="#agenda">Agenda</a></li>
-        <li><a href="#gallery">Gallery</a></li>
-        <li><a href="wish-tree">Wish the Couple</a></li>
-      </ul>
-    </nav>
-
-    <!-- About Section -->
-    <section id="about" class="about">
-      <div class="container">
-        <h3>About Us</h3>
-        <p>
-          We are so excited to share our special day with all of you. Our love
-          story started years ago, and we can't wait to start this new chapter
-          together.
-        </p>
-      </div>
+    <!-- Invitation Message -->
+    <section class="invite-message">
+      <p>With hearts full of joy and blessings, we invite you and your family to join us on this sacred journey of union and love.</p>
+      <p><strong>All the events with family without fail.</strong></p>
     </section>
 
-    <!-- Wedding Agenda Section -->
-    <section id="agenda" class="agenda">
-      <div class="container">
-        <h3>Wedding Agenda</h3>
+    <!-- Schedule -->
+    <section id="schedule">
+      <h2>Wedding Schedule</h2>
+      <div class="day">
+        <h3>Wednesday, 3rd December 2025</h3>
         <ul>
-          <li><strong>4:00 PM:</strong> Ceremony begins</li>
-          <li><strong>5:30 PM:</strong> Cocktail Reception</li>
-          <li><strong>7:00 PM:</strong> Dinner and Toasts</li>
-          <li><strong>8:30 PM:</strong> Dance Party</li>
+          <li>3:00 PM – Grithpaan & Maayra Milan</li>
+          <li>5:00 PM onwards – Dinner</li>
+          <li>7:00 PM – Reception</li>
         </ul>
       </div>
+      <div class="day">
+        <h3>Thursday, 4th December 2025</h3>
+        <ul>
+          <li>10:00 AM – DJ Light</li>
+          <li>1:00 PM – Nikasi</li>
+          <li>4:30 PM – Baraat Procession <br /><small>from Annaadarsh to Agarwal Sabha Bhawan, Anna Nagar, Chennai</small></li>
+        </ul>
+      </div>
+      <div class="day">
+        <h3>Friday, 5th December 2025</h3>
+        <ul>
+          <li>9:30 AM – Phera Ceremony</li>
+        </ul>
+      </div>
+      <p class="venue"><strong>Venue:</strong> Sindhu Sadan, Egmore, Chennai</p>
     </section>
 
-    <!-- Gallery Section -->
-    <section id="gallery" class="gallery">
-      <div class="container">
-        <h3>Our Journey So Far</h3>
-        <div class="gallery-grid">
-          <img src="https://via.placeholder.com/600x400" alt="Photo 1" />
-          <img src="https://via.placeholder.com/600x400" alt="Photo 2" />
-          <img src="https://via.placeholder.com/600x400" alt="Photo 3" />
-          <img src="https://via.placeholder.com/600x400" alt="Photo 4" />
-        </div>
+    <!-- Map Link -->
+    <section class="venue-map">
+      <h2>Venue Location</h2>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.3895822800246!2d80.25514097610935!3d13.074478187250422!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a52660c5de33a4b%3A0x9f1635684a4a62e3!2sSindhu%20Sadan!5e0!3m2!1sen!2sin!4v1759596896964!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </section>
+
+    <!-- RSVP -->
+    <section id="rsvp">
+      <h2>RSVP</h2>
+      <form action="mailto:your-email@example.com" method="post" enctype="text/plain" class="rsvp-form">
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" name="name" required />
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="attending">Will you attend?</label>
+        <select id="attending" name="attending" required>
+          <option value="">Select</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+
+        <label for="message">Blessings / Wishes (Optional):</label>
+        <textarea id="message" name="message" rows="4"></textarea>
+
+        <button type="submit">Send RSVP</button>
+      </form>
+    </section>
+
+    <!-- Photo Gallery -->
+    <section id="gallery">
+      <h2>Photo Gallery</h2>
+      <div class="gallery-grid">
+        <img src="assets/img/photo1.png" alt="Photo 1" class="gallery-thumb" />
+        <img src="assets/img/photo2.png" alt="Photo 2" class="gallery-thumb" />
+        <img src="assets/img/photo3.png" alt="Photo 3" class="gallery-thumb" />
+      </div>
+      <!-- Lightbox container -->
+      <div id="lightbox" class="lightbox">
+        <span class="close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img" />
       </div>
     </section>
 
-    <!-- Footer Section -->
+    <!-- Guestbook -->
+    <section id="guestbook">
+      <h2>Guestbook</h2>
+      <div id="firepad-container" style="height: 300px; border: 1px solid #ddd; background: #fff;"></div>
+      <p><small>Type your wishes and blessings for the couple</small></p>
+    </section>
+
+    <!-- Social Media Feed -->
+    <section id="social-feed-section">
+      <h2>Social Media Feed</h2>
+      <p>Follow our wedding memories and posts with hashtag <strong>#VikuKoVibhaGyi</strong></p>
+      <div id="social-feed-embed">
+        <!-- Example placeholders for Instagram / Twitter embed -->
+        <a href="https://instagram.com/explore/tags/VikuKoVibhaGyi" target="_blank" rel="noopener">Instagram #VikuKoVibhaGyi</a>
+        <br/>
+        <a href="https://twitter.com/hashtag/VikuKoVibhaGyi" target="_blank" rel="noopener">Twitter #VikuKoVibhaGyi</a>
+      </div>
+    </section>
+
+    <!-- Social & Hashtag -->
+    <section id="social">
+      <h2>Share the Joy</h2>
+      <p>Use our wedding hashtag on social media: <strong>#VikuKoVibhaGyi</strong></p>
+    </section>
+
     <footer>
-      <div class="footer-container">
-        <p>&copy; 2025 Vikhyath & Vibha. All Rights Reserved.</p>
-        <p>
-          Follow us on social media: <a href="#">Instagram</a>,
-          <a href="#">Facebook</a>
-        </p>
-      </div>
+      <p>© 2025 Vikhyath & Vibha | Designed with ❤️ for our special day</p>
     </footer>
 
-    <script src="scripts.js"></script>
-  </body>
+    <!-- Petal animation container -->
+    <div id="petal-container"></div>
+
+    <!-- Background Music Controls -->
+    <div id="music-control">
+      <button id="music-toggle">Play Music 🎵</button>
+      <audio id="background-music" loop>
+        <source src="assets/music/background.mp3" type="audio/mpeg" />
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+
+  </div>
+  <script src="assets/js/scripts.js"></script>
+  <script>
+    // Firebase and Firepad scripts dynamically loaded in scripts.js
+  </script>
+</body>
 </html>
