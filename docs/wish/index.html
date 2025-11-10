@@ -1,338 +1,418 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vikhyath & Vibha's Wedding Wishes</title>
-    <!-- Load Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome for Icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
     <style>
-        /* Custom styles for the wedding kudoboard look */
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;600;700&display=swap');
+      /* Custom styles for the wedding kudoboard look */
+      @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;600;700&display=swap");
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #fcf8f3; /* Very light cream/off-white */
+        background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%23e5e7eb" fill-opacity="0.2" fill-rule="evenodd"%3E%3Cpath d="M0 0h30v60H0zM30 0h30v60H30z"/%3E%3C/g%3E%3C/svg%3E'); /* Subtle pattern */
+      }
+      h1 {
+        font-family: "Playfair Display", serif; /* Elegant font for main title */
+      }
+      .kudo-card {
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+        transition: transform 0.2s, box-shadow 0.2s;
+        cursor: pointer;
+        word-wrap: break-word; /* Ensure text wraps */
+        border-radius: 0.75rem; /* More rounded corners */
+      }
+      .kudo-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      }
+      /* Style the modal overlay */
+      .modal-overlay {
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(2px);
+      }
+
+      /* Thematic Button Styles */
+      .btn-primary {
+        background-color: #8b0000;
+        color: #fefce8;
+      }
+      .btn-primary:hover {
+        background-color: #b22222;
+        transform: scale(1.05);
+      }
+      .btn-secondary {
+        display: none !important;
+        background-color: #d4af37;
+        color: #ffffff;
+      }
+      .btn-secondary:hover {
+        background-color: #e0b84f; /* Slightly lighter Gold on hover */
+        transform: scale(1.05);
+      }
+
+      .logo-img {
+        max-width: 120px; /* Adjust as needed */
+        height: auto;
+        border-radius: 50%; /* Makes it circular */
+        border: 4px solid #d4af37; /* Gold border */
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); /* Soft shadow */
+      }
+
+      #auth-status {
+        display: none !important;
+      }
+
+      /* --- Print Media Styles (for saving as PDF) --- */
+      @media print {
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #fcf8f3; /* Very light cream/off-white */
-            background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%23e5e7eb" fill-opacity="0.2" fill-rule="evenodd"%3E%3Cpath d="M0 0h30v60H0zM30 0h30v60H30z"/%3E%3C/g%3E%3C/svg%3E'); /* Subtle pattern */
+          background-color: white !important;
+          background-image: none !important; /* Remove background pattern */
+          padding: 0;
         }
-        h1 {
-            font-family: 'Playfair Display', serif; /* Elegant font for main title */
+        /* Hide non-essential UI elements for printing */
+        header,
+        .modal-overlay,
+        .delete-btn,
+        #auth-status,
+        .flex.justify-center.space-x-4 {
+          display: none !important;
+        }
+        /* Ensure the main content takes full width and has a clean layout */
+        main#kudos-board {
+          display: block; /* Disable grid/flex for simpler flow */
+          width: 100%;
+          margin: 0;
+          padding: 1cm;
+          column-count: 3; /* Use columns for a masonry print effect */
+          column-gap: 20px;
         }
         .kudo-card {
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
-            transition: transform 0.2s, box-shadow 0.2s;
-            cursor: pointer;
-            word-wrap: break-word; /* Ensure text wraps */
-            border-radius: 0.75rem; /* More rounded corners */
+          page-break-inside: avoid;
+          box-shadow: none;
+          border: 1px solid #ccc;
+          margin-bottom: 20px;
+          transform: none;
+          float: none;
+          width: 100%;
         }
-        .kudo-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        .kudo-card footer {
+          border-top: 1px solid #eee !important; /* Ensure footer border is visible */
         }
-        /* Style the modal overlay */
-        .modal-overlay {
-            background-color: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(2px);
-        }
-
-        /* Thematic Button Styles */
-        .btn-primary {
-            background-color: #8B0000; /* Dark Maroon */
-            color: #fefce8; /* Light Gold text */
-        }
-        .btn-primary:hover {
-            background-color: #b22222; /* Slightly lighter Maroon on hover */
-            transform: scale(1.05);
-        }
-        .btn-secondary {
-            background-color: #d4af37; /* Gold */
-            color: #ffffff; /* White text */
-        }
-        .btn-secondary:hover {
-            background-color: #e0b84f; /* Slightly lighter Gold on hover */
-            transform: scale(1.05);
-        }
-        
-        .logo-img {
-            max-width: 120px; /* Adjust as needed */
-            height: auto;
-            border-radius: 50%; /* Makes it circular */
-            border: 4px solid #d4af37; /* Gold border */
-            box-shadow: 0 5px 15px rgba(0,0,0,0.15); /* Soft shadow */
-        }
-
-        /* --- Print Media Styles (for saving as PDF) --- */
-        @media print {
-            body {
-                background-color: white !important;
-                background-image: none !important; /* Remove background pattern */
-                padding: 0;
-            }
-            /* Hide non-essential UI elements for printing */
-            header, .modal-overlay, .delete-btn, #auth-status, .flex.justify-center.space-x-4 {
-                display: none !important;
-            }
-            /* Ensure the main content takes full width and has a clean layout */
-            main#kudos-board {
-                display: block; /* Disable grid/flex for simpler flow */
-                width: 100%;
-                margin: 0;
-                padding: 1cm;
-                column-count: 3; /* Use columns for a masonry print effect */
-                column-gap: 20px;
-            }
-            .kudo-card {
-                page-break-inside: avoid; /* Don't break cards across pages */
-                box-shadow: none; /* Remove shadows for clean print */
-                border: 1px solid #ccc;
-                margin-bottom: 20px;
-                transform: none;
-                float: none; /* Reset layout properties */
-                width: 100%; /* Take full column width */
-            }
-            .kudo-card footer {
-                border-top: 1px solid #eee !important; /* Ensure footer border is visible */
-            }
-        }
+      }
     </style>
-</head>
-<body class="min-h-screen p-4 md:p-8">
+  </head>
+  <body class="min-h-screen p-4 md:p-8">
+    <!-- Header and Controls -->
+    <header class="max-w-7xl mx-auto mb-8 text-center pt-4">
+      <!-- Logo --><img
+        src="../assets/img/logo.png"
+        alt="V2 Wedding Logo"
+        class="logo-img mx-auto mb-6"
+      />
+      <h1
+        class="text-5xl md:text-6xl font-extrabold text-gray-800 mb-2 leading-tight"
+      >
+        Vikhyath & Vibha's <br />Wedding Wishes
+      </h1>
+      <p class="text-xl md:text-2xl text-gray-600 font-semibold mb-6">
+        #V2InLove
+      </p>
 
-    <!-- Header and Controls --><header class="max-w-7xl mx-auto mb-8 text-center pt-4">
-        <!-- Logo --><img src="../assets/img/logo.png" alt="V2 Wedding Logo" class="logo-img mx-auto mb-6" />
-        <h1 class="text-5xl md:text-6xl font-extrabold text-gray-800 mb-2 leading-tight">Vikhyath & Vibha's "$$TEST$$" $$TEST$$ <br>Wedding Wishes</h1>
-        <p class="text-xl md:text-2xl text-gray-600 font-semibold mb-6">#V2InLove</p>
+      <p id="auth-status" class="text-xs text-gray-500 mb-6">
+        Connecting to wishes database...
+      </p>
 
-        <p id="auth-status" class="text-xs text-gray-500 mb-6">
-            Connecting to wishes database...
-        </p>
-
-        <!-- Action Buttons --><div class="flex justify-center space-x-4">
-            <!-- Button to open the Add Kudo Modal --><button id="open-modal-btn"
-                    class="px-6 py-3 font-semibold rounded-lg shadow-lg transition duration-150 ease-in-out btn-primary flex items-center space-x-2">
-                <i class="fas fa-plus-circle"></i> <span>Add a Wedding Wish</span>
-            </button>
-            <!-- Button to trigger print function --><button id="print-board-btn"
-                    class="px-6 py-3 font-semibold rounded-lg shadow-lg transition duration-150 ease-in-out btn-secondary flex items-center space-x-2">
-                <i class="fas fa-print"></i> <span>Print Wishes (PDF)</span>
-            </button>
-        </div>
+      <div class="flex justify-center space-x-4">
+        <button
+          id="open-modal-btn"
+          class="px-6 py-3 font-semibold rounded-lg shadow-lg transition duration-150 ease-in-out btn-primary flex items-center space-x-2"
+        >
+          <i class="fas fa-plus-circle"></i> <span>Wish the Couple</span>
+        </button>
+        <button
+          id="print-board-btn"
+          class="px-6 py-3 font-semibold rounded-lg shadow-lg transition duration-150 ease-in-out btn-secondary flex items-center space-x-2"
+        >
+          <i class="fas fa-print"></i> <span>Print Wishes (PDF)</span>
+        </button>
+      </div>
     </header>
 
-    <!-- Kudos Board Container --><main id="kudos-board"
-          class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        <!-- Kudo cards will be inserted here by JavaScript --><div id="loading-indicator" class="col-span-full text-center py-10 text-gray-500">
-            Loading real-time wishes...
-        </div>
+    <main
+      id="kudos-board"
+      class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+    >
+      <div
+        id="loading-indicator"
+        class="col-span-full text-center py-10 text-gray-500"
+      >
+        Loading wishes...
+      </div>
     </main>
 
-    <!-- Modal for Adding New Kudo --><div id="add-kudo-modal" class="modal-overlay hidden fixed inset-0 z-50 flex items-center justify-center p-4" onclick="closeModal(event)">
-        <div class="bg-white w-full max-w-md p-6 rounded-xl shadow-2xl transform transition-all duration-300" onclick="event.stopPropagation()">
-            <h2 class="text-2xl font-bold mb-4 text-gray-800">Share Your Wishes!</h2>
-            <form id="kudo-form" class="space-y-4">
-                <div>
-                    <label for="kudo-message" class="block text-sm font-medium text-gray-700 mb-1">Your Message (Max 200 chars)</label>
-                    <textarea id="kudo-message" rows="4" maxlength="200" required
-                              class="w-full p-3 border border-gray-300 rounded-lg focus:ring-maroon-500 focus:border-maroon-500 transition"></textarea>
-                </div>
-                <div>
-                    <label for="kudo-image-url" class="block text-sm font-medium text-gray-700 mb-1">Image/GIF URL (Optional)</label>
-                    <input type="url" id="kudo-image-url" placeholder="Add a lovely photo or GIF! (e.g., https://example.com/image.gif)"
-                           class="w-full p-3 border border-gray-300 rounded-lg focus:ring-maroon-500 focus:border-maroon-500 transition">
-                </div>
-                <div>
-                    <label for="kudo-author" class="block text-sm font-medium text-gray-700 mb-1">Your Name (Optional)</label>
-                    <input type="text" id="kudo-author" placeholder="Your Name or Guest"
-                           class="w-full p-3 border border-gray-300 rounded-lg focus:ring-maroon-500 focus:border-maroon-500 transition">
-                </div>
-                <div class="flex justify-end space-x-3">
-                    <button type="button" onclick="closeModal()"
-                            class="px-4 py-2 text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition">
-                        Cancel
-                    </button>
-                    <button type="submit" id="submit-kudo-btn"
-                            class="px-4 py-2 font-semibold rounded-lg btn-primary">
-                        Post Wish!
-                    </button>
-                </div>
-            </form>
-        </div>
+    <!-- Modal for Adding New Kudo -->
+    <div
+      id="add-kudo-modal"
+      class="modal-overlay hidden fixed inset-0 z-50 flex items-center justify-center p-4"
+      onclick="closeModal(event)"
+    >
+      <div
+        class="bg-white w-full max-w-md p-6 rounded-xl shadow-2xl transform transition-all duration-300"
+        onclick="event.stopPropagation()"
+      >
+        <h2 class="text-2xl font-bold mb-4 text-gray-800">
+          Share Your Wishes!
+        </h2>
+        <form id="kudo-form" class="space-y-4">
+          <div>
+            <label
+              for="kudo-message"
+              class="block text-sm font-medium text-gray-700 mb-1"
+              >Your Message (Max 200 chars)</label
+            >
+            <textarea
+              id="kudo-message"
+              rows="4"
+              maxlength="200"
+              required
+              class="w-full p-3 border border-gray-300 rounded-lg focus:ring-maroon-500 focus:border-maroon-500 transition"
+            ></textarea>
+          </div>
+          <div>
+            <label
+              for="kudo-image-url"
+              class="block text-sm font-medium text-gray-700 mb-1"
+              >GIF/Image URL (Optional)</label
+            >
+            <input
+              type="url"
+              id="kudo-image-url"
+              placeholder="Paste a GIF or image link"
+              class="w-full p-3 border border-gray-300 rounded-lg focus:ring-maroon-500 focus:border-maroon-500 transition"
+            />
+          </div>
+          <div>
+            <label
+              for="kudo-author"
+              class="block text-sm font-medium text-gray-700 mb-1"
+              >Your Name (Optional)</label
+            >
+            <input
+              type="text"
+              id="kudo-author"
+              placeholder="Your Name or Guest"
+              class="w-full p-3 border border-gray-300 rounded-lg focus:ring-maroon-500 focus:border-maroon-500 transition"
+            />
+          </div>
+          <div class="flex justify-end space-x-3">
+            <button
+              type="button"
+              onclick="closeModal()"
+              class="px-4 py-2 text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              id="submit-kudo-btn"
+              class="px-4 py-2 font-semibold rounded-lg btn-primary"
+            >
+              Post Wish!
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
-    
+
+    <!-- Hardcoded Firebase Config and Auth Logic -->
     <script>
-        const __app_id = $$PROJECT_ID$$; 
-        const __firebase_config = JSON.stringify({
-            apiKey: $$API_KEY$$,
-            authDomain: $$PROJECT_ID$$.firebaseapp.com,
-            databaseURL: $$DATABASE_URL$$,
-            projectId: $$PROJECT_ID$$,
-            storageBucket: $$PROJECT_ID$$.appspot.com,
-            messagingSenderId: $$SENDER_ID$$,
-            appId: $$APP_ID$$,
-            measurementId: $$MEASUREMENT_ID$$,
-        });
-        // Authentication is now managed by a local ID, so this token is not used.
-        const __initial_auth_token = null; 
+      // NOTE: Configuration is hardcoded and relies on Firebase Authorized Domains for security.
+      const __app_id = "v2db-879bd";
+      const __firebase_config = JSON.stringify({
+        apiKey: "AIzaSyDqVNQemJWm79OMQwkU-y6OWbQosnpKYsY",
+        authDomain: "v2db-879bd.firebaseapp.com",
+        databaseURL:
+          "https://v2db-879bd-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "v2db-879bd",
+        storageBucket: "v2db-879bd.appspot.com",
+        messagingSenderId: "1079847367489",
+        appId: "1:1079847367489:web:be1f79c76245141cbd27c0",
+        measurementId: "G-Y77FZHHYP8",
+      });
+      const __initial_auth_token = null;
     </script>
-    <!-- END: Manual Injection -->
+    <!-- End Hardcoded Config -->
 
-    <!-- Firebase SDKs and Main Logic --><script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        // REMOVED: Auth related imports: getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged
-        import {
-            getFirestore, collection, query, onSnapshot,
-            addDoc, deleteDoc, doc, Timestamp,
-            setLogLevel
-        } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+    <!-- Firebase SDKs and Main Logic -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+      import {
+        getAuth,
+        signInAnonymously,
+        onAuthStateChanged,
+      } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+      import {
+        getStorage,
+        ref,
+        uploadBytes,
+        getDownloadURL,
+      } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-storage.js";
+      import {
+        getFirestore,
+        collection,
+        query,
+        onSnapshot,
+        addDoc,
+        deleteDoc,
+        doc,
+        Timestamp,
+        setLogLevel,
+      } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // Set Firebase logging level to Debug (optional, but good for diagnostics)
-        setLogLevel('Debug');
+      // --- GLOBAL CONFIGURATION RETRIEVAL ---
+      const appId =
+        typeof __app_id !== "undefined" ? __app_id : "default-app-id";
+      const firebaseConfig =
+        typeof __firebase_config !== "undefined"
+          ? JSON.parse(__firebase_config)
+          : {};
 
-        // --- GLOBAL CONFIGURATION RETRIEVAL ---
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : {};
+      let db;
+      let auth;
+      let storage;
+      let currentUserId = null;
+      let isAuthReady = false;
 
-        let db;
-        let localUserId = null; // Renamed from currentUserId
+      // --- UI Elements ---
+      const board = document.getElementById("kudos-board");
+      const loadingIndicator = document.getElementById("loading-indicator");
+      const authStatus = document.getElementById("auth-status");
+      const modal = document.getElementById("add-kudo-modal");
+      const form = document.getElementById("kudo-form");
+      const openModalBtn = document.getElementById("open-modal-btn");
+      const submitBtn = document.getElementById("submit-kudo-btn");
+      const printBtn = document.getElementById("print-board-btn");
+      const imageUrlInput = document.getElementById("kudo-image-url");
+      const jsConfetti = new JSConfetti();
 
-        // --- UI Elements ---
-        const board = document.getElementById('kudos-board');
-        const loadingIndicator = document.getElementById('loading-indicator');
-        const authStatus = document.getElementById('auth-status');
-        const modal = document.getElementById('add-kudo-modal');
-        const form = document.getElementById('kudo-form');
-        const openModalBtn = document.getElementById('open-modal-btn');
-        const submitBtn = document.getElementById('submit-kudo-btn');
-        const printBtn = document.getElementById('print-board-btn');
+      const getRandomColor = () => {
+        const colors = [
+          "bg-yellow-100 border-yellow-300",
+          "bg-green-100 border-green-300",
+          "bg-blue-100 border-blue-300",
+          "bg-pink-100 border-pink-300",
+          "bg-indigo-100 border-indigo-300",
+          "bg-purple-100 border-purple-300",
+          "bg-red-100 border-red-300",
+        ];
+        return colors[Math.floor(Math.random() * colors.length)];
+      };
 
+      const formatDate = (timestamp) => {
+        if (timestamp && timestamp.toDate) {
+          return timestamp.toDate().toLocaleDateString("en-US", {
+            month: "short",
+            day: "numeric",
+            year: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+          });
+        }
+        return "Just now";
+      };
 
-        // --- LOCAL USER ID MANAGEMENT ---
+      const createKudoCard = (kudo, id) => {
+        const card = document.createElement("div");
+        const colorClass = kudo.color || getRandomColor();
+        const isCreator = kudo.userId === currentUserId;
 
-        /**
-         * Generates or retrieves a persistent ID for the user using localStorage.
-         * @returns {string} The unique local user ID.
-         */
-        const getLocalUserId = () => {
-            let userId = localStorage.getItem('kudoboardUserId');
-            if (!userId) {
-                // Generate a simple UUID if none exists
-                userId = crypto.randomUUID();
-                localStorage.setItem('kudoboardUserId', userId);
-            }
-            return userId;
-        };
+        card.id = `kudo-${id}`;
+        card.className = `kudo-card p-5 rounded-lg border-b-4 ${colorClass} text-gray-800 flex flex-col justify-between`;
 
-
-        // --- HELPER FUNCTIONS ---
-
-        /**
-         * Generates a random pastel color for a kudo card.
-         * @returns {string} Tailwind CSS class for background color.
-         */
-        const getRandomColor = () => {
-            const colors = [
-                'bg-yellow-100 border-yellow-300',
-                'bg-green-100 border-green-300',
-                'bg-blue-100 border-blue-300',
-                'bg-pink-100 border-pink-300',
-                'bg-indigo-100 border-indigo-300',
-                'bg-purple-100 border-purple-300',
-                'bg-red-100 border-red-300',
-            ];
-            return colors[Math.floor(Math.random() * colors.length)];
-        };
-
-        /**
-         * Converts Firestore timestamp to a readable string.
-         * @param {Timestamp} timestamp
-         * @returns {string} Formatted date string.
-         */
-        const formatDate = (timestamp) => {
-            if (timestamp && timestamp.toDate) {
-                return timestamp.toDate().toLocaleDateString('en-US', {
-                    month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit'
-                });
-            }
-            return 'Just now';
-        };
-
-        /**
-         * Renders a single kudo note card.
-         * @param {object} kudo - The kudo document data.
-         * @param {string} id - The document ID.
-         * @returns {HTMLElement} The created card element.
-         */
-        const createKudoCard = (kudo, id) => {
-            const card = document.createElement('div');
-            const colorClass = kudo.color || getRandomColor();
-            // Check against localUserId instead of currentUserId
-            const isCreator = kudo.userId === localUserId; 
-
-            card.id = `kudo-${id}`;
-            card.className = `kudo-card p-5 rounded-lg border-b-4 ${colorClass} text-gray-800 flex flex-col justify-between`;
-
-            // Content structure
-            let cardContent = `
+        // Content structure
+        let cardContent = `
                 <div class="flex-grow mb-4">
-                    ${kudo.imageUrl ? `
+                    ${
+                      kudo.imageUrl
+                        ? `
                         <div class="mb-3 rounded-lg overflow-hidden border border-gray-300/50">
                             <img src="${kudo.imageUrl}" alt="Wedding Wish Image" class="w-full h-auto object-cover max-h-48"
                                  onerror="this.onerror=null; this.src='https://placehold.co/400x200/ef4444/ffffff?text=Image+Load+Error'; this.style.opacity='0.5'; this.title='Image could not be loaded';"
                             >
                         </div>
-                    ` : ''}
+                    `
+                        : `<div class="mb-3 rounded-lg overflow-hidden border border-gray-300/50">
+                            <img src="../assets/img/logo.png" alt="Wedding Wish Image" class="w-full h-auto object-cover max-h-48"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/400x200/ef4444/ffffff?text=Image+Load+Error'; this.style.opacity='0.5'; this.title='Image could not be loaded';"
+                            >
+                        </div>`
+                    }
                     <p class="text-lg font-medium">${kudo.message}</p>
                 </div>
                 <footer class="text-right pt-2 border-t border-gray-300/50">
-                    <p class="text-sm font-semibold text-gray-700">— ${kudo.author || 'Anonymous Admirer'}</p>
-                    <p class="text-xs text-gray-500 mt-0.5">${formatDate(kudo.createdAt)}</p>
+                    <p class="text-sm font-semibold text-gray-700">— ${
+                      kudo.author || "Anonymous Admirer"
+                    }</p>
+                    <p class="text-xs text-gray-500 mt-0.5">${formatDate(
+                      kudo.createdAt
+                    )}</p>
                 </footer>
             `;
 
-            card.innerHTML = cardContent;
+        card.innerHTML = cardContent;
 
-            // Add delete button if the current user is the creator (localUserId check)
-            if (isCreator) {
-                const deleteBtn = document.createElement('button');
-                deleteBtn.innerHTML = '×';
-                deleteBtn.title = 'Delete this wish';
-                // Add a class for print media to hide it
-                deleteBtn.className = 'delete-btn absolute top-2 right-3 text-red-500 text-xl font-bold p-1 leading-none hover:text-red-700 transition';
-                deleteBtn.onclick = (e) => {
-                    e.stopPropagation();
-                    showConfirmModal(
-                        "Are you sure you want to delete this wish?",
-                        () => deleteKudo(id)
-                    );
-                };
-                card.classList.add('relative');
-                card.appendChild(deleteBtn);
-            }
+        // Add delete button if the current user is the creator
+        if (isCreator) {
+          const deleteBtn = document.createElement("button");
+          deleteBtn.innerHTML = "×";
+          deleteBtn.title = "Delete this wish";
+          // Add a class for print media to hide it
+          deleteBtn.className =
+            "delete-btn absolute top-2 right-3 text-red-500 text-xl font-bold p-1 leading-none hover:text-red-700 transition";
+          deleteBtn.onclick = (e) => {
+            e.stopPropagation();
+            showConfirmModal("Are you sure you want to delete this wish?", () =>
+              deleteKudo(id)
+            );
+          };
+          card.classList.add("relative");
+          card.appendChild(deleteBtn);
+        }
 
-            return card;
+        return card;
+      };
+
+      window.closeModal = (event) => {
+        if (!event || event.target === modal) {
+          modal.classList.add("hidden");
+          form.reset();
+        }
+      };
+
+      openModalBtn.addEventListener("click", () => {
+        modal.classList.remove("hidden");
+      });
+
+      const showConfirmModal = (message, onConfirm) => {
+        const existingModal = document.getElementById("confirmation-modal");
+        if (existingModal) existingModal.remove();
+
+        const confirmModal = document.createElement("div");
+        confirmModal.id = "confirmation-modal";
+        confirmModal.className =
+          "modal-overlay fixed inset-0 z-[60] flex items-center justify-center p-4";
+        confirmModal.onclick = (e) => {
+          if (e.target === confirmModal) confirmModal.remove();
         };
-
-        // --- MODALS AND UI STATE ---
-
-        window.closeModal = (event) => {
-            if (!event || event.target === modal) {
-                modal.classList.add('hidden');
-                form.reset();
-            }
-        };
-
-        openModalBtn.addEventListener('click', () => {
-            modal.classList.remove('hidden');
-        });
-
-        const showConfirmModal = (message, onConfirm) => {
-            const existingModal = document.getElementById('confirmation-modal');
-            if (existingModal) existingModal.remove();
-
-            const confirmModal = document.createElement('div');
-            confirmModal.id = 'confirmation-modal';
-            confirmModal.className = 'modal-overlay fixed inset-0 z-[60] flex items-center justify-center p-4';
-            confirmModal.onclick = (e) => { if (e.target === confirmModal) confirmModal.remove(); };
-            confirmModal.innerHTML = `
+        confirmModal.innerHTML = `
                 <div class="bg-white w-full max-w-sm p-6 rounded-xl shadow-2xl transform transition-all duration-300" onclick="event.stopPropagation()">
                     <h3 class="text-xl font-bold mb-4 text-gray-800">Confirm Action</h3>
                     <p class="mb-6 text-gray-700">${message}</p>
@@ -346,149 +426,198 @@
                     </div>
                 </div>
             `;
-            document.body.appendChild(confirmModal);
+        document.body.appendChild(confirmModal);
 
-            confirmModal.querySelector('.cancel-btn').onclick = () => confirmModal.remove();
-            confirmModal.querySelector('.confirm-btn').onclick = () => {
-                onConfirm();
-                confirmModal.remove();
-            };
+        confirmModal.querySelector(".cancel-btn").onclick = () =>
+          confirmModal.remove();
+        confirmModal.querySelector(".confirm-btn").onclick = () => {
+          onConfirm();
+          confirmModal.remove();
         };
+      };
 
-        // --- FIREBASE INITIALIZATION ---
+      const initializeFirebase = async () => {
+        try {
+          if (Object.keys(firebaseConfig).length === 0) {
+            console.error("Firebase config is missing.");
+            authStatus.textContent =
+              "Error: Firebase config missing. Cannot connect.";
+            return;
+          }
 
-        const initializeFirebase = async () => {
-            try {
-                // Initialize local ID first
-                localUserId = getLocalUserId();
-                authStatus.innerHTML = `Ready. Your local ID is: <code class="bg-gray-200 p-1 rounded text-xs">${localUserId}</code>`;
+          const app = initializeApp(firebaseConfig);
+          db = getFirestore(app);
+          auth = getAuth(app);
+          storage = getStorage(app); // Initialize Firebase Storage
 
-                if (Object.keys(firebaseConfig).length === 0) {
-                    console.error("Firebase config is missing.");
-                    authStatus.textContent = "Error: Firebase config missing. Cannot connect.";
-                    return;
-                }
+          authStatus.textContent = "Authenticating...";
 
-                const app = initializeApp(firebaseConfig);
-                db = getFirestore(app);
-                
-                // Since there is no Auth step, we can immediately start the listener
-                setupRealtimeListener();
-
-            } catch (error) {
-                console.error("Firebase initialization error:", error);
-                authStatus.textContent = `Error connecting: ${error.message}`;
+          onAuthStateChanged(auth, (user) => {
+            if (user) {
+              currentUserId = user.uid;
+              isAuthReady = true;
+              authStatus.innerHTML = `Welcome! Your user ID is: <code class="bg-gray-200 p-1 rounded text-xs">${currentUserId}</code>`;
+              // Once authenticated, start listening to data
+              setupRealtimeListener();
+            } else {
+              currentUserId = null;
+              isAuthReady = false;
+              // Attempt to sign in anonymously
+              signInAnonymously(auth).catch((error) => {
+                console.error("Error signing in anonymously:", error);
+                authStatus.textContent = `Error connecting/auth: ${error.message}`;
+              });
             }
-        };
+          });
 
-        // --- FIREBASE DATA OPERATIONS ---
+          // Initial sign-in attempt
+          if (!auth.currentUser) {
+            await signInAnonymously(auth);
+          }
+        } catch (error) {
+          console.error("Firebase initialization or sign-in error:", error);
+          authStatus.textContent = `Error connecting: ${error.message}`;
+        }
+      };
 
-        /** Gets the public collection reference. */
-        const getKudosCollectionRef = () => {
-            if (!db) {
-                console.error("Firestore not initialized.");
-                return null;
-            }
-            return collection(db, 'artifacts', appId, 'public', 'data', 'weddingWishes');
-        };
+      // --- FIREBASE DATA OPERATIONS ---
 
-        /** Sets up the real-time listener for the kudos board. */
-        const setupRealtimeListener = () => {
-            if (!db) return;
+      /** Gets the public Firestore collection reference. */
+      const getKudosCollectionRef = () => {
+        if (!db) {
+          console.error("Firestore not initialized.");
+          return null;
+        }
+        return collection(
+          db,
+          "artifacts",
+          appId,
+          "public",
+          "data",
+          "weddingWishes"
+        );
+      };
 
-            const q = query(getKudosCollectionRef());
+      /** Sets up the real-time listener for the kudos board. */
+      const setupRealtimeListener = () => {
+        if (!isAuthReady || !db) return;
 
-            onSnapshot(q, (snapshot) => {
-                loadingIndicator.classList.add('hidden');
-                board.innerHTML = ''; // Clear board for fresh render
+        const q = query(getKudosCollectionRef());
 
-                const kudos = [];
-                snapshot.forEach((doc) => {
-                    kudos.push({ id: doc.id, ...doc.data() });
-                });
+        onSnapshot(
+          q,
+          (snapshot) => {
+            loadingIndicator.classList.add("hidden");
+            board.innerHTML = ""; // Clear board for fresh render
 
-                // Sort newest first
-                kudos.sort((a, b) => (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0));
-
-                kudos.forEach(kudo => {
-                    board.appendChild(createKudoCard(kudo, kudo.id));
-                });
-            }, (error) => {
-                console.error("Error fetching real-time data:", error);
-                loadingIndicator.textContent = `Error loading wishes: ${error.message}`;
+            const kudos = [];
+            snapshot.forEach((doc) => {
+              kudos.push({ id: doc.id, ...doc.data() });
             });
-        };
 
-        /** Handles submitting a new kudo. */
-        const addKudo = async (e) => {
-            e.preventDefault();
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Posting...';
+            // Sort newest first
+            kudos.sort(
+              (a, b) =>
+                (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0)
+            );
 
-            if (!localUserId) {
-                console.error("Local user ID missing.");
-                showConfirmModal("Internal error: Cannot retrieve user ID.", () => {});
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Post Wish!';
-                return;
-            }
+            kudos.forEach((kudo) => {
+              board.appendChild(createKudoCard(kudo, kudo.id));
+            });
+          },
+          (error) => {
+            console.error("Error fetching real-time data:", error);
+            loadingIndicator.textContent = `Error loading wishes: ${error.message}`;
+          }
+        );
+      };
 
-            const message = document.getElementById('kudo-message').value.trim();
-            const imageUrl = document.getElementById('kudo-image-url').value.trim();
-            const author = document.getElementById('kudo-author').value.trim() || 'Anonymous Admirer';
+      /** Handles submitting a new kudo. */
+      const addKudo = async (e) => {
+        e.preventDefault();
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Posting...";
 
-            if (message.length === 0 && imageUrl.length === 0) {
-                console.error("Message or Image URL must be provided.");
-                showConfirmModal("Please enter a message or an image URL.", () => {});
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Post Wish!';
-                return;
-            }
+        if (!currentUserId) {
+          console.error("User not authenticated.");
+          showConfirmModal(
+            "Authentication error. Please refresh the page.",
+            () => {}
+          );
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Post Wish!";
+          return;
+        }
 
-            try {
-                await addDoc(getKudosCollectionRef(), {
-                    message: message,
-                    imageUrl: imageUrl,
-                    author: author,
-                    // Use the local ID for tracking the creator
-                    userId: localUserId, 
-                    color: getRandomColor(), 
-                    createdAt: Timestamp.now()
-                });
+        const message = document.getElementById("kudo-message").value.trim();
+        const author =
+          document.getElementById("kudo-author").value.trim() ||
+          "Anonymous Admirer";
+        let imageUrl = imageUrlInput.value.trim();
 
-                closeModal();
-            } catch (error) {
-                console.error("Error adding document: ", error);
-                showConfirmModal(`Failed to post: ${error.message}`, () => {});
-            } finally {
-                submitBtn.disabled = false;
-                submitBtn.textContent = 'Post Wish!';
-            }
-        };
+        if (message.length === 0 && imageUrl.length === 0) {
+          console.error("Message or Image/GIF must be provided.");
+          showConfirmModal(
+            "Please enter a message or provide an image URL.",
+            () => {}
+          );
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Post Wish!";
+          return;
+        }
 
-        /** Handles deleting a kudo. */
-        window.deleteKudo = async (kudoId) => {
-            try {
-                const kudoRef = doc(getKudosCollectionRef(), kudoId);
-                await deleteDoc(kudoRef);
-                console.log("Kudo successfully deleted:", kudoId);
-            } catch (error) {
-                console.error("Error deleting document: ", error);
-                showConfirmModal(`Failed to delete note: ${error.message}`, () => {});
-            }
-        };
-        
-        // --- Print Functionality ---
-        const printBoard = () => {
-            window.print();
-        };
+        try {
+          submitBtn.textContent = "Saving Wish...";
+          await addDoc(getKudosCollectionRef(), {
+            message: message,
+            imageUrl: imageUrl,
+            author: author,
+            userId: currentUserId,
+            color: getRandomColor(),
+            createdAt: Timestamp.now(),
+          });
 
+          jsConfetti.addConfetti({
+            emojis: ["🎉", "💖", "✨", "📜", "💍"],
+            emojiSize: 80,
+            confettiNumber: 50,
+          });
 
-        // --- Event Listeners and Startup ---
-        form.addEventListener('submit', addKudo);
-        printBtn.addEventListener('click', printBoard); // Attach print function
-        initializeFirebase();
+          closeModal();
+        } catch (error) {
+          console.error("Error posting wish: ", error);
+          showConfirmModal(`Failed to post: ${error.message}`, () => {});
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Post Wish!";
+        }
+      };
 
+      /** Handles deleting a kudo. */
+      window.deleteKudo = async (kudoId) => {
+        try {
+          const kudoRef = doc(getKudosCollectionRef(), kudoId);
+          // Security check is done on the server (Firestore Rules)
+          await deleteDoc(kudoRef);
+          console.log("Kudo successfully deleted:", kudoId);
+        } catch (error) {
+          console.error("Error deleting document: ", error);
+          showConfirmModal(
+            `Failed to delete note. You can only delete posts you created. Error: ${error.message}`,
+            () => {}
+          );
+        }
+      };
+
+      // --- Print Functionality ---
+      const printBoard = () => {
+        window.print();
+      };
+
+      // --- Event Listeners and Startup ---
+      form.addEventListener("submit", addKudo);
+      printBtn.addEventListener("click", printBoard);
+      initializeFirebase();
     </script>
-</body>
+  </body>
 </html>
