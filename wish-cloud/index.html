@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Wishes Word Cloud with Custom Shape</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        text-align: center;
+      }
+      #wordcloud {
+        width: 90vw;
+        height: 80vh;
+        margin: 20px auto;
+        border: 1px solid #ccc;
+        background: #fff;
+        position: relative;
+      }
+      #wishInput {
+        width: 80%;
+        padding: 10px;
+        font-size: 16px;
+      }
+      #submitWish {
+        margin-top: 10px;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      #shapeImage, .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Thank you for your Wishes ❤️✨</h1>
+
+    <input class="hidden" type="text" id="wishInput" placeholder="Type your wish here..." />
+    <button class="hidden" id="submitWish">Submit Wish</button>
+
+    <div id="wordcloud"></div>
+
+    <!-- Hidden image used for shape -->
+    <img id="shapeImage" src="yinyang.png" crossorigin="anonymous" />
+
+    <script src="../vendor/jquery-2.2.4.min.js"></script>
+    
+    <script src="../vendor/wordcloud2.min.js"></script>
+
+    <script>
+      const STORAGE_KEY = "wishes";
+
+      let wishes = [];
+      $.each(
+        JSON.parse(localStorage.getItem(STORAGE_KEY)),
+        function (_, message) {
+          if (message.wish) {
+            wishes.push([message.wish, Math.floor(Math.random() * 40) + 20]);
+          }
+        }
+      );
+
+      function saveWishes() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(wishes));
+      }
+
+      function renderWordCloud() {
+        const canvasDiv = document.getElementById("wordcloud");
+        canvasDiv.innerHTML = "";
+
+        const canvas = document.createElement("canvas");
+        canvas.width = canvasDiv.clientWidth;
+        canvas.height = canvasDiv.clientHeight;
+        canvasDiv.appendChild(canvas);
+
+        const shapeImg = document.getElementById("shapeImage");
+
+        const maskCanvas = document.createElement("canvas");
+        maskCanvas.width = shapeImg.width;
+        maskCanvas.height = shapeImg.height;
+        const ctx = maskCanvas.getContext("2d");
+        ctx.drawImage(shapeImg, 0, 0);
+
+        WordCloud(canvas, {
+          list: wishes,
+          gridSize: 8,
+          weightFactor: 2,
+          fontFamily: "Courgette",
+          color: "random-dark",
+          rotateRatio: 0.5,
+          rotationSteps: 2,
+          clearCanvas: true,
+          drawMask: true,
+          maskGapWidth: 1,
+          maskColor: "rgba(0,0,0,0)",
+          backgroundColor: "beige",
+          shape: "square",
+          drawOutOfBound: false,
+          origin: [canvas.width / 2, canvas.height / 2],
+          maskImage: maskCanvas,
+        });
+      }
+
+      function addWish() {
+        const input = document.getElementById("wishInput");
+        const text = input.value.trim();
+
+        if (text.length > 0) {
+          wishes.push([text, Math.floor(Math.random() * 40) + 20]);
+          saveWishes();
+          input.value = "";
+          renderWordCloud();
+        }
+      }
+
+      document.getElementById("submitWish").addEventListener("click", addWish);
+
+      document
+        .getElementById("wishInput")
+        .addEventListener("keypress", function (e) {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            addWish();
+          }
+        });
+
+      document
+        .getElementById("shapeImage")
+        .addEventListener("load", renderWordCloud);
+    </script>
+  </body>
+</html>
