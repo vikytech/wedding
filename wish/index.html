@@ -161,8 +161,17 @@
     <!-- START: Manual Injection for GitHub Pages/Local Hosting -->
     <script>
         // NOTE: These hardcoded values are necessary for running outside the Canvas environment (e.g., GitHub Pages).
-        const __app_id = "v2db-9bd"; // Using projectId as a fallback unique ID
-        const __firebase_config = JSON.stringify("$$FIREBASE_CONFIG$$");
+        const __app_id = "$$PROJECT_ID$$"; 
+        const __firebase_config = JSON.stringify({
+            apiKey: "$$API_KEY$$",
+            authDomain: "$$PROJECT_ID$$.firebaseapp.com",
+            databaseURL: "https://$$PROJECT_ID$$-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "$$PROJECT_ID$$",
+            storageBucket: "$$PROJECT_ID$$.appspot.com",
+            messagingSenderId: "$$SENDER_ID$$",
+            appId: "$$APP_ID$$",
+            measurementId: "$$MEASUREMENT_ID$$",
+        });
         // Authentication is now managed by a local ID, so this token is not used.
         const __initial_auth_token = null; 
     </script>
