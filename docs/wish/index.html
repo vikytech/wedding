@@ -70,6 +70,36 @@
         display: none !important;
       }
 
+      a {
+        cursor: pointer;
+        text-decoration: none;
+        color: #fff;
+        font-weight: 700;
+        position: relative;
+        display: inline-block;
+        line-height: 1.2;
+      }
+
+      a:hover::before {
+        background: rgb(42 103 204 / 80%);
+      }
+
+      a:before {
+        content: "";
+        position: absolute;
+        top: 100%;
+        width: 100%;
+        left: 0;
+        height: 3px;
+        border-radius: 2px;
+        background: linear-gradient(
+          130deg,
+          #ff7a18,
+          #af002d 41.07%,
+          #319197 76.05%
+        );
+      }
+
       /* --- Print Media Styles (for saving as PDF) --- */
       @media print {
         body {
@@ -190,7 +220,11 @@
             <label
               for="kudo-image-url"
               class="block text-sm font-medium text-gray-700 mb-1"
-              >GIF/Image URL (Optional)</label
+              ><a
+                href="https://giphy.com/search/congratulations"
+                target="_blank"
+                >GIF/Image URL (Optional) 🔗</a
+              ></label
             >
             <input
               type="url"
