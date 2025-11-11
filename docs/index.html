@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Vikhyath & Vibha Wedding Invitation</title>
-  <link
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>#V2 Wedding</title>
+    <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;500&display=swap"
       rel="stylesheet"
     />
@@ -13,142 +13,197 @@
       rel="stylesheet"
       type="text/css"
     />
-  <link rel="stylesheet" href="assets/css/styles.css" />
-</head>
-<body>
-  <div class="container">
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header with Logo and Names -->
+      <header>
+        <img src="assets/img/logo.png" alt="Wedding Logo" class="logo" />
+        <h1>Vikhyath & Vibha</h1>
+        <p class="tagline">
+          Together with their families, invite you to celebrate their wedding
+        </p>
+      </header>
 
-    <!-- Header with Logo and Names -->
-    <header>
-      <img src="assets/img/logo.png" alt="Wedding Logo" class="logo" />
-      <h1>Vikhyath & Vibha</h1>
-      <p class="tagline">Together with their families, invite you to celebrate their wedding</p>
-    </header>
+      <!-- Invitation Message -->
+      <section class="invite-message">
+        <p>
+          With hearts full of joy and blessings, we invite you and your family
+          to join us on this sacred journey of union and love.
+        </p>
+        <p><strong>All the events with family without fail.</strong></p>
+      </section>
 
-    <!-- Invitation Message -->
-    <section class="invite-message">
-      <p>With hearts full of joy and blessings, we invite you and your family to join us on this sacred journey of union and love.</p>
-      <p><strong>All the events with family without fail.</strong></p>
-    </section>
+      <section id="schedule">
+        <h2>Celebrations</h2>
+        <div class="day">
+          <h3>Wednesday, 3rd December 2025</h3>
+          <ul>
+            <li>09:45 AM – Grithpaan</li>
+            <li>11:00 AM – Reception</li>
+            <li>
+              02:20 PM – Geet <br /><small>Sindhu Sadan, Egmore, Chennai</small>
+            </li>
+          </ul>
+        </div>
+        <div class="day">
+          <h3>Thursday, 4th December 2025</h3>
+          <ul>
+            <li>
+              12.10 PM – Nikasi <br /><small
+                >Sindhu Sadan, Egmore, Chennai</small
+              >
+            </li>
+            <li>
+              4:30 PM – Baraat Prasthan <br />
+              <small
+                >from Woodlands Drive-in, Arumbakkam to SRKK Agarwal Bhawan Anna
+                Nagar, Chennai</small
+              >
+            </li>
+          </ul>
+        </div>
+        <div class="day">
+          <h3>Friday, 5th December 2025</h3>
+          <ul>
+            <li>6:30 AM – Phera
+              <br />
+              <small
+                >SRKK Agarwal Bhawan Anna Nagar, Chennai</small
+              >
+            </li>
+          </ul>
+        </div>
+        <p class="venue"></p>
+      </section>
 
-    <!-- Schedule -->
-    <section id="schedule">
-      <h2>Wedding Schedule</h2>
-      <div class="day">
-        <h3>Wednesday, 3rd December 2025</h3>
-        <ul>
-          <li>3:00 PM – Grithpaan & Maayra Milan</li>
-          <li>5:00 PM onwards – Dinner</li>
-          <li>7:00 PM – Reception</li>
-        </ul>
+      <!-- Map Link -->
+      <section class="venue-map">
+        <h2>Venue Location</h2>
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.3895822800246!2d80.25514097610935!3d13.074478187250422!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a52660c5de33a4b%3A0x9f1635684a4a62e3!2sSindhu%20Sadan!5e0!3m2!1sen!2sin!4v1759596896964!5m2!1sen!2sin"
+          width="600"
+          height="450"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </section>
+
+      <!-- RSVP -->
+      <section id="rsvp" class="hide">
+        <h2>RSVP</h2>
+        <form
+          action="mailto:your-email@example.com"
+          method="post"
+          enctype="text/plain"
+          class="rsvp-form"
+        >
+          <label for="name">Your Name:</label>
+          <input type="text" id="name" name="name" required />
+
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required />
+
+          <label for="attending">Will you attend?</label>
+          <select id="attending" name="attending" required>
+            <option value="">Select</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+
+          <label for="message">Blessings / Wishes (Optional):</label>
+          <textarea id="message" name="message" rows="4"></textarea>
+
+          <button type="submit">Send RSVP</button>
+        </form>
+      </section>
+
+      <!-- Photo Gallery -->
+      <section id="gallery">
+        <h2>Photo Gallery</h2>
+        <div class="gallery-grid">
+          <img
+            src="assets/img/photo1.png"
+            alt="Photo 1"
+            class="gallery-thumb"
+          />
+          <img
+            src="assets/img/photo2.png"
+            alt="Photo 2"
+            class="gallery-thumb"
+          />
+          <img
+            src="assets/img/photo3.png"
+            alt="Photo 3"
+            class="gallery-thumb"
+          />
+        </div>
+        <!-- Lightbox container -->
+        <div id="lightbox" class="lightbox">
+          <span class="close">&times;</span>
+          <img class="lightbox-content" id="lightbox-img" />
+        </div>
+      </section>
+
+      <!-- Guestbook -->
+      <section id="guestbook">
+        <h2>Guestbook</h2>
+        <button id="wish-button">Wish the couple</button>
+      </section>
+
+      <!-- Social Media Feed -->
+      <section id="social-feed-section">
+        <h2>Social Media Feed</h2>
+        <p>
+          Follow our wedding memories and posts with hashtag
+          <a href="https://instagram.com/explore/tags/V2InLove">
+            <strong>#V2InLove</strong>
+          </a>
+        </p>
+        <div id="social-feed-embed">
+          <a
+            href="https://www.instagram.com/v2_in_love"
+            target="_blank"
+            rel="noopener"
+          >
+            <div class="social-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path
+                  d="M224.3 141a115 115 0 1 0 -.6 230 115 115 0 1 0 .6-230zm-.6 40.4a74.6 74.6 0 1 1 .6 149.2 74.6 74.6 0 1 1 -.6-149.2zm93.4-45.1a26.8 26.8 0 1 1 53.6 0 26.8 26.8 0 1 1 -53.6 0zm129.7 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM399 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"
+                />
+              </svg>
+            </div>
+            Instagram</a
+          >
+        </div>
+      </section>
+
+      <section id="social"></section>
+
+      <footer>
+        <p>© 2025 Vikhyath & Vibha</p>
+        <p>Designed with ❤️ for our special day</p>
+      </footer>
+
+      <!-- Petal animation container -->
+      <div id="petal-container"></div>
+
+      <!-- Background Music Controls -->
+      <div id="music-control">
+        <button id="music-toggle">Play Music 🎵</button>
+        <audio id="background-music" loop>
+          <source src="assets/music/background.mp3" type="audio/mpeg" />
+          Your browser does not support the audio element.
+        </audio>
       </div>
-      <div class="day">
-        <h3>Thursday, 4th December 2025</h3>
-        <ul>
-          <li>10:00 AM – DJ Light</li>
-          <li>1:00 PM – Nikasi</li>
-          <li>4:30 PM – Baraat Procession <br /><small>from Annaadarsh to Agarwal Sabha Bhawan, Anna Nagar, Chennai</small></li>
-        </ul>
-      </div>
-      <div class="day">
-        <h3>Friday, 5th December 2025</h3>
-        <ul>
-          <li>9:30 AM – Phera Ceremony</li>
-        </ul>
-      </div>
-      <p class="venue"><strong>Venue:</strong> Sindhu Sadan, Egmore, Chennai</p>
-    </section>
-
-    <!-- Map Link -->
-    <section class="venue-map">
-      <h2>Venue Location</h2>
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.3895822800246!2d80.25514097610935!3d13.074478187250422!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a52660c5de33a4b%3A0x9f1635684a4a62e3!2sSindhu%20Sadan!5e0!3m2!1sen!2sin!4v1759596896964!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </section>
-
-    <!-- RSVP -->
-    <section id="rsvp">
-      <h2>RSVP</h2>
-      <form action="mailto:your-email@example.com" method="post" enctype="text/plain" class="rsvp-form">
-        <label for="name">Your Name:</label>
-        <input type="text" id="name" name="name" required />
-
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required />
-
-        <label for="attending">Will you attend?</label>
-        <select id="attending" name="attending" required>
-          <option value="">Select</option>
-          <option value="Yes">Yes</option>
-          <option value="No">No</option>
-        </select>
-
-        <label for="message">Blessings / Wishes (Optional):</label>
-        <textarea id="message" name="message" rows="4"></textarea>
-
-        <button type="submit">Send RSVP</button>
-      </form>
-    </section>
-
-    <!-- Photo Gallery -->
-    <section id="gallery">
-      <h2>Photo Gallery</h2>
-      <div class="gallery-grid">
-        <img src="assets/img/photo1.png" alt="Photo 1" class="gallery-thumb" />
-        <img src="assets/img/photo2.png" alt="Photo 2" class="gallery-thumb" />
-        <img src="assets/img/photo3.png" alt="Photo 3" class="gallery-thumb" />
-      </div>
-      <!-- Lightbox container -->
-      <div id="lightbox" class="lightbox">
-        <span class="close">&times;</span>
-        <img class="lightbox-content" id="lightbox-img" />
-      </div>
-    </section>
-
-    <!-- Guestbook -->
-    <section id="guestbook">
-      <h2>Guestbook</h2>
-      <div id="firepad-container" style="height: 300px; border: 1px solid #ddd; background: #fff;"></div>
-      <p><small>Type your wishes and blessings for the couple</small></p>
-    </section>
-
-    <!-- Social Media Feed -->
-    <section id="social-feed-section">
-      <h2>Social Media Feed</h2>
-      <p>Follow our wedding memories and posts with hashtag <strong>#VikuKoVibhaGyi</strong></p>
-      <div id="social-feed-embed">
-        <!-- Example placeholders for Instagram / Twitter embed -->
-        <a href="https://instagram.com/explore/tags/VikuKoVibhaGyi" target="_blank" rel="noopener">Instagram #VikuKoVibhaGyi</a>
-        <br/>
-        <a href="https://twitter.com/hashtag/VikuKoVibhaGyi" target="_blank" rel="noopener">Twitter #VikuKoVibhaGyi</a>
-      </div>
-    </section>
-
-    <!-- Social & Hashtag -->
-    <section id="social">
-      <h2>Share the Joy</h2>
-      <p>Use our wedding hashtag on social media: <strong>#VikuKoVibhaGyi</strong></p>
-    </section>
-
-    <footer>
-      <p>© 2025 Vikhyath & Vibha | Designed with ❤️ for our special day</p>
-    </footer>
-
-    <!-- Petal animation container -->
-    <div id="petal-container"></div>
-
-    <!-- Background Music Controls -->
-    <div id="music-control">
-      <button id="music-toggle">Play Music 🎵</button>
-      <audio id="background-music" loop>
-        <source src="assets/music/background.mp3" type="audio/mpeg" />
-        Your browser does not support the audio element.
-      </audio>
     </div>
-
-  </div>
-  <script src="assets/js/scripts.js"></script>
-  <script>
-    // Firebase and Firepad scripts dynamically loaded in scripts.js
-  </script>
-</body>
+    <script src="assets/js/scripts.js"></script>
+    <script>
+      // Firebase and Firepad scripts dynamically loaded in scripts.js
+    </script>
+  </body>
 </html>

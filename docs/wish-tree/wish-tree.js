@@ -52,23 +52,24 @@ $(document).ready(function () {
   // n is for the fake random position
   var n = 0;
   var WishNo = 0;
-  var WishText;
-  var NameText;
-  var TimeText;
+  var wishText;
+  var nameText;
+  var timeText;
 
   //add the data from sharepoint
-  from_localstorage();
+  // from_localstorage();
+  loadWishesFromFirebase();
 
   //creat a leaf when click make a wish button
   $("#make_wish").click(function () {
     //check if has content, make sure no empty
     if ($("#wish_content").val() && $("#wisher_name").val()) {
-      WishText = $("#wish_content").val();
-      NameText = $("#wisher_name").val();
-      TimeText = new Date().toLocaleDateString("en-IN");
+      wishText = $("#wish_content").val();
+      nameText = $("#wisher_name").val();
+      timeText = new Date().toLocaleString("en-IN");
       prepare_data();
-      saveWishes();
-      CreatALeaf(wish_data);
+      saveWishes(wishText,nameText,timeText);
+      creatALeaf(wish_data);
 
       // after creat the leaf, reset the textarea for next wish
       $("#wish_content").val("");
@@ -85,20 +86,54 @@ $(document).ready(function () {
     }
   });
 
-  function saveWishes() {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(wish_data));
+  function saveWishes(wishText,nameText,timeText) {
+    // if ($("#wish_content").val() && $("#wisher_name").val()) {
+    // wishText = $("#wish_content").val();
+    // nameText = $("#wisher_name").val();
+    // timeText = new Date().toLocaleDateString("en-IN");
+
+     var newWish = {
+      wish: wishText,
+      name: nameText,
+      time: timeText
+    };
+    // localStorage.setItem(STORAGE_KEY, JSON.stringify(wish_data));
+    guestbookRef.push(newWish).then(() => {
+      $("#wish_content").val("");
+      $("#wisher_name").val("");
+      $(".counter").text("200 / 200");
+      new Audio("../audio/wish-audio.mp3").play();
+    }).catch((error) => {
+      alert('Error saving wish: ' + error.message);
+    });
   }
+
+  function loadWishesFromFirebase() {
+  guestbookRef.off(); // Clear previous listeners to avoid duplicates
+
+  guestbookRef.on('value', snapshot => {
+    var firebaseData = snapshot.val() || {};
+    var wishesArray = [];
+
+    Object.keys(firebaseData).forEach(key => {
+      wishesArray.push(firebaseData[key]);
+      prepare_data();
+    });
+    wish_data = wishesArray
+    creatALeaf(wish_data);
+  });
+}
 
   function from_localstorage() {
     let localWishes = JSON.parse(localStorage.getItem(STORAGE_KEY));
 
     $.each(localWishes, function (message) {
-      WishText = message.wish;
-      NameText = message.name;
-      TimeText = message.time;
+      wishText = message.wish;
+      nameText = message.name;
+      timeText = message.time;
       prepare_data();
     });
-    CreatALeaf(wish_data);
+    creatALeaf(wish_data);
   }
 
   //import data
@@ -118,9 +153,9 @@ $(document).ready(function () {
     ];
 
     wish_data.push({
-      wish: WishText,
-      name: NameText,
-      time: TimeText,
+      wish: wishText,
+      name: nameText,
+      time: timeText,
       wish_num: WishNo,
       num: Num,
       top: FakeRandomTop[arr[n]],
@@ -140,8 +175,27 @@ $(document).ready(function () {
     }
   }
 
-  //creat a new leaf fucntion
   function CreatALeaf(data) {
+  $(".leaf_test").empty();
+
+  $.each(data, function (_, message) {
+    // generate random or fixed pos/rotation for each leaf if not saved
+    var top = Math.random() * 90 + 5; // 5% - 95% height
+    var left = Math.random() * 90 + 5; // 5% - 95% left
+    var rotate = Math.random() * 360;
+
+    var txt1 = `<div style="top:${top}%; left:${left}%; transform:rotate(${rotate}deg)"
+      class="leaf_group" >
+      <p class="text_on_leaf wish_on_leaf">${message.wish}</p>
+      <p class="text_on_leaf name_on_leaf">${message.name}</p>
+      <p class="text_on_leaf time_tag">${message.time}</p>
+    </div>`;
+    $(".leaf_test").append(txt1);
+  });
+}
+
+  //creat a new leaf fucntion
+  function creatALeaf(data) {
     $(".leaf_test")[0].innerHTML ="";
     $.each(data, function(_, message) {
       if(message.wish)

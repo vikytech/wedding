@@ -12,7 +12,7 @@ html {
 
 body {
     height: 100%;
-    background: url("http://preview.ibb.co/nHsvLF/page_background.png") no-repeat;
+    background: url("../img/page-background.png") no-repeat;
     /*    background-color: aqua;*/
     background-size: cover;
 }
@@ -37,17 +37,17 @@ body {
 
 .leaf_1 {
     transform-origin: top;
-    background-image: url("http://image.ibb.co/kiJVnv/leaves_1.png");
+    background-image: url("../img/leaves-1.png");
 }
 
 .leaf_2 {
     transform-origin: top;
-    background-image: url("http://image.ibb.co/kpofnv/leaves_2.png");
+    background-image: url("../img/leaves-2.png");
 }
 
 .leaf_3 {
     transform-origin: top;
-    background-image: url("http://image.ibb.co/eXWpfF/leaves_3.png");
+    background-image: url("../img/leaves-3.png");
 }
 
 .leaf_group {
